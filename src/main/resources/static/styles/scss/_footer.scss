@@ -1,0 +1,92 @@
+.footer {
+    background-color: $darkBlue;
+    color: $white;
+    padding: 2.5rem;
+    text-align: center;
+
+    .container {
+        @include breakpoint-up(large) {
+            display: grid;
+            grid-template-columns: 2fr 2fr 3fr;
+            grid-template-rows: 1fr auto;
+            grid-template-areas:
+                'logo links cta'
+                'logo links copyright';
+            gap: 1rem;
+            justify-items: start;
+        }
+    }
+
+    a {
+        color: $white;
+    }
+
+    &__logo {
+        display: inline-block;
+        font-family: 'Audiowide', cursive;
+        font-size: $font-xlg;
+
+        @include breakpoint-down (medium) {
+            margin-bottom: 1rem;
+        }
+
+        @include breakpoint-up(large) {
+            grid-area: logo;
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: $font-sm;
+
+        @include breakpoint-down(medium) {
+            margin-bottom: 1.25rem;
+        }
+
+        @include breakpoint-up(large) {
+            grid-area: links;
+        }
+
+        a {
+            line-height: 2.25;
+            transition: color 300ms ease-in-out;
+
+            &:hover {
+                color: $lightGray;
+            }
+        }
+    }
+
+    &__cta {
+
+        @include breakpoint-down (medium) {
+            margin-bottom: 1.25rem;
+        }
+
+        @include breakpoint-up(large) {
+            grid-area: cta;
+            text-align: right;
+            justify-self: end;
+        }
+        
+        a.button {
+            background-color: $white;
+            font-size: $font-med;
+            color: $darkBlue;
+        }
+    }
+
+    &__copyright {
+        font-size: $font-sm;
+        color: $lightGray;
+
+        @include breakpoint-up(large) {
+            grid-area: copyright;
+            align-self: end;
+            justify-self: end;
+        }
+    }
+
+}

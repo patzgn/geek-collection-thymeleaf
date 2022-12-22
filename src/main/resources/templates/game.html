@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<body>
+
+    <section class="hero" layout:fragment="hero">
+        <div class="container">
+            <div class="container--pall hero__text">
+                <h1>
+                    Kirby and The Forgotten Land
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="content" layout:fragment="content">
+        <div class="container container--pall">
+            <div class="product__page">
+                <div class="product__page-img"
+                    style="background-image: url('../static/img/games/Kirby_and_The_Forgotten_Land.jpg')"
+                    th:style="'background-image: url(/img/games/Kirby_and_The_Forgotten_Land.jpg)'">
+                </div>
+                <div class="product__page-info">
+                    <p>Float off on an all-new adventure as the powerful puffball, Kirby. Explore in 3D stages as you
+                        discover a mysterious world with abandoned structures from a past civilization—like a shopping
+                        mall?! Copy enemies’ abilities like the new Drill and Ranger and use them to attack, explore
+                        your surroundings, and save the kidnapped Waddle Dees from the ferocious Beast Pack alongside
+                        the mysterious Elfilin. Hope you’re hungry for an unforgettable adventure!</p>
+                    <ul>
+                        <li>Release date: March 25, 2022</li>
+                        <li>Platform: Nintendo Switch</li>
+                        <li>Publisher: Nintendo</li>
+                        <li>Genre: Action, Platform</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

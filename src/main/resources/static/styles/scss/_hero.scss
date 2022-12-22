@@ -1,0 +1,38 @@
+.hero {
+    background-color: $veryLightGray;
+
+    &__text {
+        text-align: center;
+
+        h1 {
+            font-weight: 600;
+            font-size: $font-xlg;
+            line-height: 1;
+            color: $darkBlue;
+            margin-bottom: 1.5rem;
+
+            @include breakpoint-up(large) {
+                font-size: $font-xxlg;
+            }
+        }
+
+        ul {
+            display: inline-block;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+    }
+
+    &__cta {
+        font-size: $font-med;
+        color: $white;
+        transition: opacity 300ms ease-in-out;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+
+
+}
