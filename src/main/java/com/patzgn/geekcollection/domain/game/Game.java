@@ -15,4 +15,23 @@ public class Game {
     private String description;
     private String poster;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getReleaseYear() {
+        return releaseYear;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
 }
