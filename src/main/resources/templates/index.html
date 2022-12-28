@@ -28,14 +28,18 @@
 
 <section class="content" layout:fragment="content">
     <div class="product__content container container--pall">
-        TOP GAMES
-        <div class="product__grid">
-            <a href="#" class="product__item">
+        Latest added games
+        <div class="product__grid" th:remove="all-but-first">
+            <a class="product__item" th:each="game: ${games}"
+               href="#"
+               th:href="@{|/game/${game.id}|}">
                 <div class="product__image"
                      style="background-image: url('../static/img/games/The_Legend_of_Zelda_Breath_of_the_Wild.jpg')"
-                     th:style="'background-image: url(/img/games/The_Legend_of_Zelda_Breath_of_the_Wild.jpg)'"
+                     th:style="${game.poster ne null} ?
+                        @{|background-image: url(/img/games/${game.poster})|} :
+                        @{|background-image: url(/img/poster-placeholder.png)|}"
                 ></div>
-                <div class="product__title">
+                <div class="product__title" th:text="${game.title}">
                     The Legend of Zelda Breath of the Wild
                 </div>
             </a>
@@ -66,49 +70,6 @@
                     Mario Kart 8 Deluxe
                 </div>
             </a>
-        </div>
-    </div>
-
-    <div class="product__content container container--pall">
-        TOP BOOKS
-        <div class="product__grid">
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/poster-placeholder.png')"
-                     th:style="'background-image: url(/img/poster-placeholder.png)'"
-                ></div>
-                <div class="product__title">
-                    Title
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/poster-placeholder.png')"
-                     th:style="'background-image: url(/img/poster-placeholder.png)'"
-                ></div>
-                <div class="product__title">
-                    Title
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/poster-placeholder.png')"
-                     th:style="'background-image: url(/img/poster-placeholder.png)'"
-                ></div>
-                <div class="product__title">
-                    Title
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/poster-placeholder.png')"
-                     th:style="'background-image: url(/img/poster-placeholder.png)'"
-                ></div>
-                <div class="product__title">
-                    Title
-                </div>
-            </a>
-
         </div>
     </div>
 </section>
