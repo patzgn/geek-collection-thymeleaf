@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
-
 @Controller
 public class GameController {
-
     private final GameService gameService;
 
     public GameController(GameService gameService) {
@@ -21,12 +18,11 @@ public class GameController {
     }
 
     @GetMapping("/game/{id}")
-    public String getGame(@PathVariable long id,
+    public String getGame(@PathVariable Long id,
                           Model model) {
         GameDto game = gameService.findGameById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("game", game);
         return "game";
     }
-
 }
