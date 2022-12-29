@@ -5,6 +5,44 @@
 
 .product {
 
+    table {
+        width: 100%;
+        border: 0;
+    }
+
+    th.no,
+    td.no {
+        width: 100px;
+        text-align: center;
+    }
+
+    th {
+        padding: 0;
+        font-size: $font-lg;
+        font-weight: 600;
+        color: $darkBlue;
+        border-bottom: 2px solid $darkBlue;
+    }
+
+    td {
+        font-size: $font-med;
+        color: $lightGray;
+        text-decoration: none;
+    }
+
+    a {
+        color: $lightGray;
+        transition: color 300ms ease-in-out;
+
+        &:hover {
+            color: $darkBlue;
+
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
     &__content {
         text-align: center;
         font-size: $font-lg;
@@ -89,4 +127,12 @@
         }
     }
 
+}
+
+.previous {
+    grid-area: a;
+}
+
+.next {
+    grid-area: c;
 }

@@ -3,6 +3,7 @@ const body = document.querySelector('body');
 const header = document.querySelector('.header');
 const overlay = document.querySelector('.overlay');
 const fadeElems = document.querySelectorAll('.has-fade');
+const link = document.querySelector('a');
 
 btnHamburger.addEventListener('click', function () {
     console.log('open hamburger');
@@ -22,5 +23,11 @@ btnHamburger.addEventListener('click', function () {
             element.classList.remove('fade-out');
             element.classList.add('fade-in');
         });
+    }
+});
+
+link.addEventListener('click', function (event) {
+    if (this.parentElement.classList.contains('disabled')) {
+        event.preventDefault();
     }
 });

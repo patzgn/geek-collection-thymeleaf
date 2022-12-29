@@ -115,6 +115,16 @@ a:hover {
   }
 }
 
+// Grid
+.grid {
+  display: grid;
+
+  &-two-areas {
+    grid-template-columns: 140px auto 106px;
+    grid-template-areas: "a b c";
+  }
+}
+
 // Buttons
 button,
 .button {
@@ -137,4 +147,8 @@ button,
   @include breakpoint-up(large) {
     display: none;
   }
+}
+
+.hide {
+  display: none;
 }

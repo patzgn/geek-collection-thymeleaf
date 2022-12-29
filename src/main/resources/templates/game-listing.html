@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container">
+        <div class="container--pall hero__text">
+            <h1>
+                List of all games in our library
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="product container container--pall">
+        <table>
+            <thead>
+            <tr>
+                <th class="no">No.</th>
+                <th>Title</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game, status: ${games}">
+                <td class="no" th:text="${(pageSize * (currentPage - 1)) + status.count}">1</td>
+                <td>
+                    <a href="#" th:href="@{|/game/${game.id}|}" th:text="${game.title}">
+                        Title
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container container--px container--pb grid grid-two-areas">
+        <a href="#"
+           th:href="@{|/games?page=${currentPage - 1}|}"
+           class="button hero__cta previous"
+           th:classappend="${currentPage == 1} ? 'hide'">Previous page</a>
+        <a href="#"
+           th:href="@{|/games?page=${currentPage + 1}|}"
+           class="button hero__cta next"
+           th:classappend="${currentPage == totalPages} ? 'hide'">Next page</a>
+    </div>
+</section>
+
+</body>
+</html>
