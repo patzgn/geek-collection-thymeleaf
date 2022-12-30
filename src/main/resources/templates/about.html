@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container">
+        <div class="container--pall hero__text">
+            <h1>
+                Track your geek collection
+            </h1>
+
+            <div>
+                <ul>
+                    <li>Catalog your games and books collection</li>
+                    <li>Create wishlists</li>
+                    <li>Take part in reading challenge</li>
+                    <li>Check most popular games and books among users</li>
+                </ul>
+            </div>
+
+            <a href="#" class="button hero__cta">Sign in</a>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="product__content container container--pall">
+        Latest added games
+        <div class="product__grid" th:remove="all-but-first">
+            <a class="product__item" th:each="game: ${games}"
+               href="#"
+               th:href="@{|/game/${game.id}|}">
+                <div class="product__image"
+                     style="background-image: url('../static/img/games/The_Legend_of_Zelda_Breath_of_the_Wild.jpg')"
+                     th:style="${game.poster ne null} ?
+                        @{|background-image: url(/img/games/${game.poster})|} :
+                        @{|background-image: url(/img/poster-placeholder.png)|}"
+                ></div>
+                <div class="product__title" th:text="${game.title}">
+                    The Legend of Zelda Breath of the Wild
+                </div>
+            </a>
+            <a href="#" class="product__item">
+                <div class="product__image"
+                     style="background-image: url('../static/img/games/Kirby_and_The_Forgotten_Land.jpg')"
+                     th:style="'background-image: url(/img/games/Kirby_and_The_Forgotten_Land.jpg)'"
+                ></div>
+                <div class="product__title">
+                    Kirby and The Forgotten Land
+                </div>
+            </a>
+            <a href="#" class="product__item">
+                <div class="product__image"
+                     style="background-image: url('../static/img/games/Super_Mario_Odyssey.jpg')"
+                     th:style="'background-image: url(/img/games/Super_Mario_Odyssey.jpg)'"
+                ></div>
+                <div class="product__title">
+                    Super Mario Odyssey
+                </div>
+            </a>
+            <a href="#" class="product__item">
+                <div class="product__image"
+                     style="background-image: url('../static/img/games/Mario_Kart_8_Deluxe.jpg')"
+                     th:style="'background-image: url(/img/games/Mario_Kart_8_Deluxe.jpg)'"
+                ></div>
+                <div class="product__title">
+                    Mario Kart 8 Deluxe
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <body>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container">
+        <div class="container--pall hero__text">
+            <h1>
+                Admin panel
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="container container--pall flex flex-jc-c flex-ai-c">
+        <div class="admin">
+            <p class="admin admin__notification" th:if="${notification}" th:text="${notification}">
+                Notifications
+            </p>
+            <div class="admin__links">
+                <a href="#"
+                   th:href="@{/admin/add-game}"
+                   class="button hero__cta">Add game</a>
+                <a href="#"
+                   th:href="@{/admin/add-book}"
+                   class="button hero__cta">Add book</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

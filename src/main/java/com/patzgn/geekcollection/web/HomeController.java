@@ -1,6 +1,6 @@
 package com.patzgn.geekcollection.web;
 
-import com.patzgn.geekcollection.domain.game.GameDto;
+import com.patzgn.geekcollection.domain.game.dto.GameDto;
 import com.patzgn.geekcollection.domain.game.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +21,11 @@ public class HomeController {
         List<GameDto> games = gameService.findLatestGames(4);
         model.addAttribute("games", games);
         return "index";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
     }
 
 }

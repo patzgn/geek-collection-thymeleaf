@@ -129,6 +129,41 @@
 
 }
 
+.admin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+
+    &__links {
+
+        a {
+            &:not(:last-child) {
+                margin-right: 32px;
+            }
+        }
+    }
+
+    &__form {
+    
+        &>* {
+            width: 60%;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 150px;
+        }
+
+    }
+
+    &__notification {
+        font-size: $font-lg;
+        color: $darkBlue;
+    }
+}
+
 .previous {
     grid-area: a;
 }

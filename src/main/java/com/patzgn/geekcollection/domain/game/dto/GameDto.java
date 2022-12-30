@@ -1,14 +1,6 @@
-package com.patzgn.geekcollection.domain.game;
+package com.patzgn.geekcollection.domain.game.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class GameDto {
     private Long id;
     private String title;
     private String platform;
@@ -16,6 +8,16 @@ public class Game {
     private Integer releaseYear;
     private String description;
     private String poster;
+
+    public GameDto(Long id, String title, String platform, String publisher, Integer releaseYear, String description, String poster) {
+        this.id = id;
+        this.title = title;
+        this.platform = platform;
+        this.publisher = publisher;
+        this.releaseYear = releaseYear;
+        this.description = description;
+        this.poster = poster;
+    }
 
     public Long getId() {
         return id;

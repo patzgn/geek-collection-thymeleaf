@@ -442,6 +442,28 @@ button,
   }
 }
 
+.admin {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.admin__links a:not(:last-child) {
+  margin-right: 32px;
+}
+.admin__form > * {
+  width: 60%;
+  margin-top: 10px;
+}
+.admin__form button {
+  width: 150px;
+}
+.admin__notification {
+  font-size: 1.625rem;
+  color: #0b3b55;
+}
+
 .previous {
   grid-area: a;
 }
