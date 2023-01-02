@@ -1,0 +1,10 @@
+package com.patzgn.geekcollection.domain.user;
+
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.Optional;
+
+interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    Optional<User> findByName(String name);
+}

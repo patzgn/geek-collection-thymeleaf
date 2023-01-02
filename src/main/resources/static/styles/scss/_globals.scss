@@ -81,6 +81,9 @@ a:hover {
 
   &--pt {
     padding-top: 2.5rem;
+    @include breakpoint-up(large) {
+      padding-top: 4.5rem;
+    }
   }
 
   &--pr {
@@ -89,6 +92,9 @@ a:hover {
 
   &--pb {
     padding-bottom: 2.5rem;
+    @include breakpoint-up(large) {
+      padding-bottom: 4.5rem;
+    }
   }
 
   &--pl {
@@ -101,6 +107,10 @@ a:hover {
 // Flexbox
 .flex {
   display: flex;
+
+  &-fd-c {
+    flex-direction: column;
+  }
 
   &-jc-sb {
     justify-content: space-between;

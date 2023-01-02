@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section class="notification" layout:fragment="notification">
+    <p th:if="${param.error}"
+       th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+       class="notification__text">
+        Login error
+    </p>
+</section>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container">
+        <div class="container--pall hero__text">
+            <h1>
+                Log in to GeekCollection
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="container container--pall flex flex-ai-c flex-jc-c flex-fd-c">
+        <div class="border_box sign">
+            <form th:action="@{/login}" method="post" class="sign__form">
+                <input name="username" placeholder="Username" class="sign__form__item">
+                <input name="password" placeholder="Password" type="password" class="sign__form__item">
+                <button type="submit" class="button">Log in</button>
+            </form>
+            <p>Not a member? <a href="#" th:href="@{/register}">Create an account</a></p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

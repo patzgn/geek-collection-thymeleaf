@@ -2,8 +2,18 @@
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <body>
+
+<section class="notification" layout:fragment="notification">
+    <p th:if="${param.logout}" class="notification__text">
+        You have successfully logged out
+    </p>
+    <p th:if="${param.success}" class="notification__text">
+        You have successfully registered
+    </p>
+</section>
 
 <section class="hero" layout:fragment="hero">
     <div class="container">
@@ -21,7 +31,8 @@
                 </ul>
             </div>
 
-            <a href="#" class="button hero__cta">Sign in</a>
+            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()" class="button header__cta">Sign in</a>
+            <a href="#" th:href="@{/profile}" sec:authorize="isAuthenticated()" class="button header__cta">My Profile</a>
         </div>
     </div>
 </section>

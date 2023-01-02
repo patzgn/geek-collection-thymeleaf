@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container">
+        <div class="container--pall hero__text">
+            <h1>
+                Create an account
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="container container--pall flex flex-ai-c flex-jc-c flex-fd-c">
+        <div class="border_box sign">
+            <form action="#" th:action="@{/register}" method="post" th:object="${user}" class="sign__form">
+                <input th:field="*{email}" type="email" placeholder="Email" class="sign__form__item">
+                <input th:field="*{name}" placeholder="Username" class="sign__form__item">
+                <input th:field="*{password}" type="password" placeholder="Password" class="sign__form__item">
+                <button type="submit" class="button">Create Account</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

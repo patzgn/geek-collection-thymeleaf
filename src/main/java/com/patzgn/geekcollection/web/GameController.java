@@ -27,7 +27,7 @@ public class GameController {
         GameDto game = gameService.findGameById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("game", game);
-        return "game";
+        return "game/game";
     }
 
     @GetMapping("/games")
@@ -38,6 +38,6 @@ public class GameController {
         model.addAttribute("totalPages", gamesPage.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("pageSize", GAMES_PAGE_SIZE);
-        return "game-listing";
+        return "game/game-listing";
     }
 }

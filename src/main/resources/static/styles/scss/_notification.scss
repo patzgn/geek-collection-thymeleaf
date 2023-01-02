@@ -1,0 +1,10 @@
+.notification {
+    background-color: $darkBlue;
+
+    &__text {
+        text-align: center;
+        font-size: $font-med;
+        color: $white;
+    }
+
+}

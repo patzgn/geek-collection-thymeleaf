@@ -152,11 +152,21 @@ a:hover {
 .container--pt {
   padding-top: 2.5rem;
 }
+@media (min-width: 64em) {
+  .container--pt {
+    padding-top: 4.5rem;
+  }
+}
 .container--pr {
   padding-right: 1.5rem;
 }
 .container--pb {
   padding-bottom: 2.5rem;
+}
+@media (min-width: 64em) {
+  .container--pb {
+    padding-bottom: 4.5rem;
+  }
 }
 .container--pl {
   padding-left: 1.5rem;
@@ -164,6 +174,9 @@ a:hover {
 
 .flex {
   display: flex;
+}
+.flex-fd-c {
+  flex-direction: column;
 }
 .flex-jc-sb {
   justify-content: space-between;
@@ -299,6 +312,15 @@ button,
 }
 .header__cta:hover {
   opacity: 0.85;
+}
+
+.notification {
+  background-color: #0b3b55;
+}
+.notification__text {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #ffffff;
 }
 
 .hero {
@@ -443,7 +465,7 @@ button,
 }
 
 .admin {
-  width: 100%;
+  width: 30rem;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -453,15 +475,76 @@ button,
   margin-right: 32px;
 }
 .admin__form > * {
-  width: 60%;
-  margin-top: 10px;
+  width: 100%;
+}
+.admin__form input,
+.admin__form textarea {
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  color: #0b3b55;
+  font-size: 1rem;
+  border: 1px solid #0b3b55;
+  border-radius: 0.5rem;
+  resize: none;
+}
+.admin__form input[type=file] {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }
 .admin__form button {
-  width: 150px;
+  width: 8rem;
+  margin-top: 1.5rem;
 }
 .admin__notification {
   font-size: 1.625rem;
   color: #0b3b55;
+}
+
+.border_box {
+  border: 1px solid #0b3b55;
+  padding: 2rem;
+}
+
+.sign {
+  width: 20rem;
+  justify-items: center;
+}
+.sign__form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.sign__form__item {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #0b3b55;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #0b3b55;
+}
+.sign__form__item::-moz-placeholder {
+  color: #909090;
+}
+.sign__form__item:-ms-input-placeholder {
+  color: #909090;
+}
+.sign__form__item::placeholder {
+  color: #909090;
+}
+.sign__form button {
+  font-size: 1.125rem;
+}
+.sign p {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 0.875rem;
+  text-align: center;
 }
 
 .previous {

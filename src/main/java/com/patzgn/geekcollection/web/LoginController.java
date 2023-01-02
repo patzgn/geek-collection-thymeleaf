@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class BookController {
+public class LoginController {
 
-    @GetMapping("/books")
-    public String getBooksList() {
-        return "book/book-listing";
+    @GetMapping("/login")
+    String loginForm() {
+        return "login-form";
     }
-
 }
