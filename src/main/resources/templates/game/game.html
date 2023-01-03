@@ -20,7 +20,7 @@
     <div class="container container--pall">
         <div class="product__page">
             <div class="product__page-img"
-                 style="background-image: url('../../static/img/games/Kirby_and_The_Forgotten_Land.jpg')"
+                 style="background-image: url('../../static/img/games/kirby_and_the_forgotten_land.jpg')"
                  th:style="${game.poster ne null} ?
                     @{|background-image: url(/img/games/${game.poster})|} :
                     @{|background-image: url(/img/poster-placeholder.png)|}">
@@ -34,10 +34,15 @@
                     the mysterious Elfilin. Hope you’re hungry for an unforgettable adventure!
                 </p>
                 <ul>
-                    <li th:text="|Release year: ${game.releaseYear}|">Release year: 2022</li>
-                    <li th:text="|Platform: ${game.platform}|">Platform: Nintendo Switch</li>
-                    <li th:text="|Publisher: ${game.publisher}|">Publisher: Nintendo</li>
-                    <li th:text="|Genre: |">Genre: Action, Platform</li>
+                    <li th:text="|Release date: ${game.releaseDate}|">Release date: 2022</li>
+                    <li>Platform:
+                        <span th:each="platform: ${game.getPlatforms()}" th:text="| ${platform}|">
+                            Nintendo Switch
+                        </span>
+                    </li>
+                    <li> Genre:
+                        <span th:each="genre: ${game.getGenres()}" th:text="| ${genre}|">Action Adventure</span>
+                    </li>
                 </ul>
             </div>
         </div>

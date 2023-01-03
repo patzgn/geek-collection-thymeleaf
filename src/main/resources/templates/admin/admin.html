@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
 <body>
 
 <section class="notification" layout:fragment="notification">
@@ -22,17 +22,14 @@
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-jc-c flex-ai-c">
-        <div class="admin">
-            <div class="admin__links">
-                <a href="#"
-                   th:href="@{/admin/add-game}"
-                   class="button hero__cta">Add game</a>
-                <a href="#"
-                   th:href="@{/admin/add-book}"
-                   class="button hero__cta">Add book</a>
-            </div>
+    <div class="container container--pall admin">
+        <div class="admin__links">
+            <a href="#"
+               th:href="@{/admin/add-game}">Add game</a>
+            <a href="#"
+               th:href="@{/admin/add-book}">Add book</a>
         </div>
+    </div>
     </div>
 </section>
 

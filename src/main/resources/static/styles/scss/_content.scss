@@ -130,28 +130,55 @@
 }
 
 .admin {
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
     &__links {
 
         a {
+            position: relative;
+            font-size: $font-med;
+            color: $lightGray;
+            transition: color 300ms ease-in-out;
+
             &:not(:last-child) {
                 margin-right: 32px;
             }
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                height: 2px;
+                left: 0;
+                right: 0;
+                bottom: -10px;
+                background: $darkBlue;
+                opacity: 0;
+                transition: opacity 300ms ease-in-out;
+            }
+
+            &:hover {
+                color: $darkBlue;
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+
         }
     }
 
     &__form {
+
+        width: 40rem;
 
         &>* {
             width: 100%;
         }
 
         input,
+        select,
         textarea {
             padding: 0.5rem;
             margin-top: 0.25rem;
@@ -161,6 +188,7 @@
             border: 1px solid $darkBlue;
             border-radius: 0.5rem;
             resize: none;
+            overflow-y: auto;
         }
 
         input[type=file] {

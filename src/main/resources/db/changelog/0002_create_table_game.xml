@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-1" author="patzgn">
+
+        <createTable tableName="game">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(200)"/>
+            <column name="release_date" type="DATE"/>
+            <column name="description" type="VARCHAR(10000)"/>
+            <column name="poster" type="VARCHAR(100)"/>
+        </createTable>
+
+        <createTable tableName="game_platform">
+            <column name="game_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_platform_game_id"
+                             referencedTableName="game"
+                             referencedColumnNames="id"
+                             primaryKey="true"
+                             primaryKeyName="pk_game_platform"
+                />
+            </column>
+            <column name="platform_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_platform_platform_id"
+                             referencedTableName="platform"
+                             referencedColumnNames="id"
+                             primaryKey="true"
+                             primaryKeyName="pk_game_platform"
+                />
+            </column>
+        </createTable>
+
+        <createTable tableName="game_genre">
+            <column name="game_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_game_genre_game_id"
+                             referencedTableName="game"
+                             referencedColumnNames="id"
+                             primaryKey="true"
+                             primaryKeyName="pk_game_genre"
+                />
+            </column>
+            <column name="genre_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_game_genre_genre_id"
+                             referencedTableName="genre"
+                             referencedColumnNames="id"
+                             primaryKey="true"
+                             primaryKeyName="pk_game_genre"
+                />
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

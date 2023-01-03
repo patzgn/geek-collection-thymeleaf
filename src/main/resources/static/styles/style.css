@@ -465,19 +465,44 @@ button,
 }
 
 .admin {
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.admin__links a {
+  position: relative;
+  font-size: 1.125rem;
+  color: #909090;
+  transition: color 300ms ease-in-out;
 }
 .admin__links a:not(:last-child) {
   margin-right: 32px;
+}
+.admin__links a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  background: #0b3b55;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+.admin__links a:hover {
+  color: #0b3b55;
+}
+.admin__links a:hover::before {
+  opacity: 1;
+}
+.admin__form {
+  width: 40rem;
 }
 .admin__form > * {
   width: 100%;
 }
 .admin__form input,
+.admin__form select,
 .admin__form textarea {
   padding: 0.5rem;
   margin-top: 0.25rem;
@@ -487,6 +512,7 @@ button,
   border: 1px solid #0b3b55;
   border-radius: 0.5rem;
   resize: none;
+  overflow-y: auto;
 }
 .admin__form input[type=file] {
   border: 0;

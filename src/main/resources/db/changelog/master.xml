@@ -5,11 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
-    <include file="0001_create_table_game.xml" relativeToChangelogFile="true" />
-    <include file="0002_create_tables_users_and_role.xml" relativeToChangelogFile="true" />
+    <include file="0001_create_table_genre_and_platform.xml" relativeToChangelogFile="true" />
+    <include file="0002_create_table_game.xml" relativeToChangelogFile="true" />
+    <include file="0003_create_tables_users_and_role.xml" relativeToChangelogFile="true" />
 
     <!-- TEST DATA -->
-    <include file="../testdata/0001_games.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0002_users_and_role.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0001_genres_and_platforms.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0002_games.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0003_users_and_role.sql" relativeToChangelogFile="true" context="dev"/>
 
 </databaseChangeLog>

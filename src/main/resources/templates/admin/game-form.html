@@ -23,12 +23,18 @@
                   class="admin admin__form">
                 <label for="title">Title</label>
                 <input type="text" id="title" th:field="*{title}">
-                <label for="platform">Platform</label>
-                <input type="text" id="platform" th:field="*{platform}">
-                <label for="publisher">Publisher</label>
-                <input type="text" id="publisher" th:field="*{publisher}">
-                <label for="releaseYear">Release year</label>
-                <input type="number" id="releaseYear" th:field="*{releaseYear}">
+                <label for="platform">Platforms</label>
+                <select id="platform" th:field="*{platforms}" required multiple>
+                    <option value="" hidden>Select platform</option>
+                    <option th:each="platform: ${platforms}" th:value="${platform.name}" th:text="${platform.name}"></option>
+                </select>
+                <label for="genre">Genres</label>
+                <select id="genre" th:field="*{genres}" required multiple>
+                    <option value="" hidden>Select genres</option>
+                    <option th:each="genre: ${genres}" th:value="${genre.name}" th:text="${genre.name}"></option>
+                </select>
+                <label for="releaseDate">Release date</label>
+                <input type="date" id="releaseDate" th:field="*{releaseDate}">
                 <label for="description">Description</label>
                 <textarea id="description" rows="10" th:field="*{description}"></textarea>
                 <label for="poster">Poster</label>
