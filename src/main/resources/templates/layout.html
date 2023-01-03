@@ -34,7 +34,7 @@
             <a href="#" th:href="@{/games}">Games</a>
             <a href="#" th:href="@{/books}">Books</a>
             <a href="#" th:href="@{/about}">About</a>
-            <a href="#" th:href="@{/profile}" sec:authorize="hasAnyRole('USER', 'ADMIN')">My Profile</a>
+            <a href="#" th:href="@{/user/{name}(name=${#authentication.name})}" sec:authorize="hasAnyRole('USER', 'ADMIN')">My Profile</a>
             <a href="#" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
         </div>
 
@@ -48,7 +48,7 @@
         <a href="#" th:href="@{/games}">Games</a>
         <a href="#" th:href="@{/books}">Books</a>
         <a href="#" th:href="@{/about}">About</a>
-        <a href="#" th:href="@{/profile}" sec:authorize="hasAnyRole('USER', 'ADMIN')">My Profile</a>
+        <a href="#" th:href="@{/user/{name}(name=${#authentication.name})}" sec:authorize="hasAnyRole('USER', 'ADMIN')">My Profile</a>
         <a href="#" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
     </div>
 </header>

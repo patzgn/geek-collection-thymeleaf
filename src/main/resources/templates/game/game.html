@@ -34,14 +34,18 @@
                     the mysterious Elfilin. Hope you’re hungry for an unforgettable adventure!
                 </p>
                 <ul>
-                    <li th:text="|Release date: ${game.releaseDate}|">Release date: 2022</li>
+                    <li th:text="|Release date: ${game.getReleaseDate()}|">Release date: 2022</li>
                     <li>Platform:
-                        <span th:each="platform: ${game.getPlatforms()}" th:text="| ${platform}|">
+                        <span th:each="platform, status: ${game.getPlatforms()}"
+                              th:text="${status.last} ? | ${platform}| : | ${platform},|">
                             Nintendo Switch
                         </span>
                     </li>
                     <li> Genre:
-                        <span th:each="genre: ${game.getGenres()}" th:text="| ${genre}|">Action Adventure</span>
+                        <span th:each="genre, status: ${game.getGenres()}"
+                              th:text="${status.last} ? | ${genre}| : | ${genre},|">
+                            Action, Adventure
+                        </span>
                     </li>
                 </ul>
             </div>

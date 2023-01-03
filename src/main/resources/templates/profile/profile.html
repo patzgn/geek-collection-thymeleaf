@@ -16,19 +16,16 @@
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-jc-c flex-ai-c">
-        <div class="admin">
-            <p class="admin admin__notification" th:if="${notification}" th:text="${notification}">
-                Notifications
-            </p>
-            <div class="admin__links">
-                <a href="#"
-                   th:href="@{/admin/add-game}"
-                   class="button hero__cta">Add game</a>
-                <a href="#"
-                   th:href="@{/admin/add-book}"
-                   class="button hero__cta">Add book</a>
-            </div>
+    <div class="container container--pall flex flex-jc-c admin">
+        <div class="admin__links">
+            <a href="#"
+               th:href="@{/user/{name}(name=${#authentication.name})}">Profile</a>
+            <a href="#"
+               th:href="@{/user/{name}/games(name=${#authentication.name})}">Games</a>
+            <a href="#"
+               th:href="@{/user/{name}/books(name=${#authentication.name})}">Books</a>
+            <a href="#"
+               th:href="@{/user/{name}/options(name=${#authentication.name})}">Options</a>
         </div>
     </div>
 </section>

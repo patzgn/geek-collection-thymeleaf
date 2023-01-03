@@ -15,7 +15,6 @@ public class GameDto {
 
     private Long id;
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
     private String description;
     private String poster;

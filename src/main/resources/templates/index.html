@@ -32,7 +32,7 @@
             </div>
 
             <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()" class="button header__cta">Sign in</a>
-            <a href="#" th:href="@{/profile}" sec:authorize="isAuthenticated()" class="button header__cta">My Profile</a>
+            <a href="#" th:href="@{/user/{name}(name=${#authentication.name})}" sec:authorize="isAuthenticated()" class="button header__cta">My Profile</a>
         </div>
     </div>
 </section>
