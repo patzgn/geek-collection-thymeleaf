@@ -35,14 +35,14 @@ class CustomSecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers(
-                "/img/**",
-                "/scripts/**",
-                "/styles/**"
-        );
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return web -> web.ignoring().requestMatchers(
+//                "/img/**",
+//                "/scripts/**",
+//                "/styles/**"
+//        );
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
