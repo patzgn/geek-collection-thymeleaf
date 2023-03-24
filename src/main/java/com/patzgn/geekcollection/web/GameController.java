@@ -21,7 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Controller
 @RequestMapping("/games")
 @AllArgsConstructor
-class GameControllerOld {
+class GameController {
 
     private final GameService gameService;
 
