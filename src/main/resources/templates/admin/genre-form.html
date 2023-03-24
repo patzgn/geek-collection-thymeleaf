@@ -6,27 +6,45 @@
 <body>
 
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                Add new game genre
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            Add new game genre
+        </h1>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-jc-c flex-ai-c">
-        <div class="border_box">
-            <form action="#" th:action="@{/admin/add-genre}"
-                  method="post"
-                  th:object="${genre}"
-                  class="admin admin__form">
-                <label for="name">Name</label>
-                <input type="text" id="name" th:field="*{name}">
-                <button type="submit">Add</button>
+    <div class="container py-5 px-5">
+
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin}"
+                   class="nav-link">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-game}"
+                   class="nav-link">Add game</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-genre}"
+                   class="nav-link active">Add genre</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-platform}"
+                   class="nav-link">Add platform</a>
+            </li>
+        </ul>
+
+        <div class="form-admin w-100 my-4 mx-auto border">
+            <form th:action="@{/admin/add-genre}" th:object="${genre}" method="post">
+                <div class="form-floating mb-3">
+                    <input th:field="*{name}" name="name" id="name" placeholder="Name" required class="form-control">
+                    <label for="name">Name</label>
+                </div>
+                <button type="submit" class="w-100 btn btn-primary">Add</button>
             </form>
         </div>
+
     </div>
 </section>
 

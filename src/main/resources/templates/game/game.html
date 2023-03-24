@@ -2,30 +2,35 @@
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 
 <body>
 
+<section th:if="${message}" class="notification" layout:fragment="notification">
+    <p th:text="${message}" class="m-3"></p>
+</section>
+
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1 th:text="${game.title}">
-                Kirby and The Forgotten Land
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 th:text="${game.title}" class="display-6 fw-bold text-center">
+            Kirby and The Forgotten Land
+        </h1>
     </div>
 </section>
 
+
 <section class="content" layout:fragment="content">
-    <div class="container container--pall">
-        <div class="product__page">
-            <div class="product__page-img"
-                 style="background-image: url('../../static/img/games/kirby_and_the_forgotten_land.jpg')"
-                 th:style="${game.poster ne null} ?
-                    @{|background-image: url(/img/games/${game.poster})|} :
-                    @{|background-image: url(/img/poster-placeholder.png)|}">
+    <div class="container py-5 px-5">
+
+        <div class="row row-cols-2 g-4 lh-base">
+            <div class="col-2">
+                <img src="../../static/img/games/kirby_and_the_forgotten_land.jpg"
+                     th:src="${game.poster ne null} ? @{|/img/games/${game.poster}|} : @{|/img/poster-placeholder.png|}"
+                     class="rounded w-100">
             </div>
-            <div class="product__page-info">
+
+            <div class="col-10">
                 <p th:text="${game.description}">
                     Float off on an all-new adventure as the powerful puffball, Kirby. Explore in 3D stages as you
                     discover a mysterious world with abandoned structures from a past civilization—like a shopping
@@ -33,7 +38,7 @@
                     your surroundings, and save the kidnapped Waddle Dees from the ferocious Beast Pack alongside
                     the mysterious Elfilin. Hope you’re hungry for an unforgettable adventure!
                 </p>
-                <ul>
+                <ul class="fs-6 p-0" style="list-style-type: none">
                     <li th:text="|Release date: ${game.getReleaseDate()}|">Release date: 2022</li>
                     <li>Platform:
                         <span th:each="platform, status: ${game.getPlatforms()}"
@@ -50,6 +55,47 @@
                 </ul>
             </div>
         </div>
+
+        <div class="d-flex align-items-end flex-column mt-4">
+            <p>Want to add this game to your list?</p>
+            <div>
+                <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()"
+                   class="btn btn-primary btn-lg">Sign in</a>
+
+                <form sec:authorize="isAuthenticated()"
+                      th:if="${lists.size() > 0}"
+                      th:action="@{/users/{username}/games(username=${#authorization.getAuthentication().getName()})}"
+                      method="post">
+                    <div class="input-group">
+                        <label class="input-group-text" for="list">List</label>
+                        <select id="list" name="list" required class="form-select">
+                            <option th:each="list: ${lists}" th:value="${list}" th:text="${list}">Option</option>
+                        </select>
+
+                        <label class="input-group-text" for="status">Status</label>
+                        <select id="status" name="status" required class="form-select">
+                            <option th:each="st: ${status}" th:value="${st}" th:text="${st}">Option</option>
+                        </select>
+
+                        <input name="id" th:value="${game.id}" type="number" hidden="hidden">
+
+                        <button type="submit" class="btn btn-outline-secondary">Add</button>
+                    </div>
+                </form>
+
+                <form sec:authorize="isAuthenticated()"
+                      th:unless="${lists.size() > 0}"
+                      method="post">
+                    <div class="input-group">
+                        <label class="input-group-text" for="listName">Add your first list</label>
+                        <input name="listName" id="listName" class="form-control" placeholder="List name">
+                        <button type="submit" class="btn btn-outline-secondary">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </section>
 

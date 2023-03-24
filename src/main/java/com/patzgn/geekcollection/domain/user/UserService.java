@@ -1,12 +1,16 @@
 package com.patzgn.geekcollection.domain.user;
 
+import com.patzgn.geekcollection.domain.usergame.UserGameDto;
 import com.patzgn.geekcollection.domain.user.dto.UserCredentialsDto;
 import com.patzgn.geekcollection.domain.user.dto.UserRegistrationDto;
+import com.patzgn.geekcollection.domain.usergame.UserGameMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -36,4 +40,19 @@ public class UserService {
         user.getRoles().add(defaultRole);
         userRepository.save(user);
     }
+
+    @Transactional
+    public void deleteUser(String username) {
+        userRepository.deleteByName(username);
+    }
+
+    public List<UserGameDto> getAllUserGames(String username) {
+        return userRepository.findByName(username)
+                .map(User::getGames)
+                .orElseThrow()
+                .stream()
+                .map(UserGameMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
 }

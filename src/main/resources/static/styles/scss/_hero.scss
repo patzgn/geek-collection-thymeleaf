@@ -1,37 +1,35 @@
 .hero {
     background-color: $veryLightGray;
 
-    &__text {
-        text-align: center;
+    // h1 {
+    //     margin-bottom: 1.5rem;
+    //     line-height: 1;
+    //     text-align: center;
+    //     font-weight: 600;
+    //     font-size: $font-xlg;
+    //     color: $darkBlue;
 
-        h1 {
-            font-weight: 600;
-            font-size: $font-xlg;
-            line-height: 1;
-            color: $darkBlue;
-            margin-bottom: 1.5rem;
+    //     @include breakpoint-up(large) {
+    //         font-size: 2.25rem;
+    //     }
+    // }
 
-            @include breakpoint-up(large) {
-                font-size: $font-xxlg;
-            }
-        }
+    // ul {
+    //     margin-bottom: 2.5rem;
+    //     padding: 0;
+    //     line-height: 1.75rem;
+    // }
 
-        ul {
-            display: inline-block;
-            text-align: left;
-            margin-bottom: 2.5rem;
-        }
+    // &__container {
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    // }
 
-    }
-
-    &__cta {
-        font-size: $font-med;
-        color: $white;
-        transition: opacity 300ms ease-in-out;
-
-        &:hover {
-            opacity: 0.85;
-        }
-    }
+    // &__links {
+    //     line-height: 2rem;
+    //     gap: 0.5rem;
+    //     font-size: 1.25rem;
+    // }
 
 }

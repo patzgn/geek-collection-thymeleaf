@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
+<body>
+
+<section th:if="${message}" class="notification" layout:fragment="notification">
+    <p th:text="${message}" class="m-3"></p>
+</section>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container px-4 py-5 ">
+        <h1 class="mb-5 display-6 fw-bold text-center">
+            Track your geek collection
+        </h1>
+
+        <div class="col-lg-6 mx-auto">
+            <ul class="mb-5">
+                <li>Catalog your games and books collection</li>
+                <li>Create wishlists</li>
+                <li>Take part in reading challenge</li>
+                <li>Check most popular games and books among users</li>
+            </ul>
+
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()"
+                   class="btn btn-primary btn-lg px-4">Sign in</a>
+                <a href="#" th:href="@{/users/{name}(name=${#authentication.name})}" sec:authorize="isAuthenticated()"
+                   class="btn btn-primary btn-lg px-4">My Profile</a>
+                <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()"
+                   class="btn btn-outline-secondary btn-lg px-4">Log out</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="container py-5 px-5">
+        <h2 class="display-6 text-center mb-4">404 - Page Not Found</h2>
+
+    </div>
+</section>
+
+</body>
+</html>

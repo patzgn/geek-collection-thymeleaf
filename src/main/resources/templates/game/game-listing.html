@@ -2,50 +2,111 @@
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <body>
 
+<section th:if="${message}" class="notification" layout:fragment="notification">
+    <p th:text="${message}" class="m-3"></p>
+</section>
+
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                List of all games in our library
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            List of all games in our library
+        </h1>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="product container container--pall">
-        <table>
-            <thead>
-            <tr>
-                <th class="no">No.</th>
-                <th>Title</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="game, status: ${games}">
-                <td class="no" th:text="${(pageSize * (currentPage - 1)) + status.count}">1</td>
-                <td>
-                    <a href="#" th:href="@{|/game/${game.id}|}" th:text="${game.title}">
-                        Title
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="container py-5 px-5">
+        <div class="row justify-content-end mb-3">
+            <div class="col-4">
+                <form th:action="@{/games}">
+                    <div class="input-group">
+                        <button type="submit"
+                                class="btn btn-outline-secondary border border-secondary-subtle border-end-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
 
-    <div class="container container--px container--pb grid grid-two-areas">
-        <a href="#"
-           th:href="@{|/games?page=${currentPage - 1}|}"
-           class="button hero__cta previous"
-           th:classappend="${currentPage == 1} ? 'hide'">Previous page</a>
-        <a href="#"
-           th:href="@{|/games?page=${currentPage + 1}|}"
-           class="button hero__cta next"
-           th:classappend="${currentPage == totalPages} ? 'hide'">Next page</a>
+                        <input th:value="${keyword}" type="text" id="keyword" name="keyword"
+                               placeholder="Search..."
+                               required class="form-control border border-secondary-subtle border-start-0 border-end-0">
+
+                        <button class="btn btn-outline-secondary border border-secondary-subtle border-start-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div th:if="${games.size() > 0}" class="table-responsive">
+            <table class="table table-hover md-4">
+                <thead class="fs-4">
+                <tr>
+                    <th>TITLE</th>
+                    <th sec:authorize="hasRole('ADMIN')" style="width: 20%" class="text-center">ACTIONS</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="game, status: ${games}">
+                    <td>
+                        <a href="#" th:href="@{|/games/${game.id}|}" th:text="${game.title}" style="display: block">
+                            Title
+                        </a>
+                    </td>
+                    <td sec:authorize="hasRole('ADMIN')" class="text-center">
+                        <a href="#" th:href="@{|/admin/edit-game/${game.id}|}" title="Edit game">
+                            <img src="../../static/img/icons/edit.png" th:src="@{/img/icons/edit.png}"
+                                 style="width: 32px">
+                        </a>
+                        <a href="#" th:href="@{|/admin/delete-game/${game.id}|}">
+                            <img src="../../static/img/icons/trash.png" th:src="@{/img/icons/trash.png}"
+                                 style="width: 32px">
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation">
+                <ul th:if="${totalPages > 1}" class="pagination justify-content-center">
+                    <li th:classappend="${currentPage == 1} ? 'disabled'" class="page-item">
+                        <a th:href="@{|/games?page=${currentPage - 1}|}" class="page-link">Previous</a>
+                    </li>
+
+                    <li th:if="${currentPage - 2 > 1}" class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+
+                    <li th:each="i: ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 1, currentPage + 2 < totalPages ? currentPage + 2 : totalPages)}"
+                        th:classappend="${currentPage == i} ? 'active'" class="page-item">
+                        <a th:text="${i}" th:href="@{|/games?page=${i}|}"
+                           class="page-link" href="#">1</a>
+                    </li>
+
+                    <li th:if="${currentPage + 2 < totalPages}" class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+
+                    <li th:classappend="${currentPage == totalPages} ? 'disabled'" class="page-item">
+                        <a th:href="@{|/games?page=${currentPage + 1}|}" class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div th:unless="${games.size() > 0}" class="row justify-content-center">
+            <div class="alert alert-secondary col-6">
+                No games found!
+            </div>
+        </div>
     </div>
 </section>
 

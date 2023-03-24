@@ -1,164 +1,194 @@
+@media (min-width: 1400px) {
+	.container {
+		max-width: 1180px !important;
+	}
+}
+
 html {
-  font-size: 100%;
-  box-sizing: border-box;
+	font-size: 100%;
+	box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  font-size: $font-sm;
-  font-weight: 300;
-  color: $darkGray;
-  line-height: 1.3;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: $font-sm;
+	font-weight: 300;
+	color: $darkGray;
+	line-height: 1.3;
 
-  @include breakpoint-up(large) {
-    font-size: $font-med;
-  }
+	@include breakpoint-up(large) {
+		font-size: $font-med;
+	}
 
-  &.noscroll {
-    overflow: hidden;
-  }
+	&.noscroll {
+		overflow: hidden;
+	}
 }
 
 h1,
 h2,
 h3 {
-  margin-top: 0;
+	margin-top: 0;
+	color: $darkBlue;
 }
 
 ul,
 ol {
-  margin-top: 0;
+	margin-top: 0;
 }
 
 a,
 a:visited,
 a:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
+
+
 
 // Spacing
-.container {
-  max-width: 60rem;
-  margin: 0 auto;
+// .container {
+// 	max-width: 60rem;
+// 	margin: 0 auto;
 
-  &--pall {
-    padding-top: 2.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 2.5rem;
-    padding-left: 1.5rem;
+// 	&--pall {
+// 		padding-top: 2.5rem;
+// 		padding-right: 1.5rem;
+// 		padding-bottom: 2.5rem;
+// 		padding-left: 1.5rem;
 
-    @include breakpoint-up(large) {
-      padding-top: 4.5rem;
-      padding-bottom: 4.5rem;
-    }
-  }
+// 		@include breakpoint-up(large) {
+// 			padding-top: 4.5rem;
+// 			padding-bottom: 4.5rem;
+// 		}
+// 	}
 
-  &--py {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+// 	&--py {
+// 		padding-top: 2.5rem;
+// 		padding-bottom: 2.5rem;
 
-    @include breakpoint-up(large) {
-      padding-top: 4.5rem;
-      padding-bottom: 4.5rem;
-    }
-  }
+// 		@include breakpoint-up(large) {
+// 			padding-top: 4.5rem;
+// 			padding-bottom: 4.5rem;
+// 		}
+// 	}
 
-  &--px {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-  }
+// 	&--px {
+// 		padding-right: 1.5rem;
+// 		padding-left: 1.5rem;
+// 	}
 
-  &--pt {
-    padding-top: 2.5rem;
-    @include breakpoint-up(large) {
-      padding-top: 4.5rem;
-    }
-  }
+// 	&--pt {
+// 		padding-top: 2.5rem;
 
-  &--pr {
-    padding-right: 1.5rem;
-  }
+// 		@include breakpoint-up(large) {
+// 			padding-top: 4.5rem;
+// 		}
+// 	}
 
-  &--pb {
-    padding-bottom: 2.5rem;
-    @include breakpoint-up(large) {
-      padding-bottom: 4.5rem;
-    }
-  }
+// 	&--pr {
+// 		padding-right: 1.5rem;
+// 	}
 
-  &--pl {
-    padding-left: 1.5rem;
-  }
+// 	&--pb {
+// 		padding-bottom: 2.5rem;
 
+// 		@include breakpoint-up(large) {
+// 			padding-bottom: 4.5rem;
+// 		}
+// 	}
 
-}
+// 	&--pl {
+// 		padding-left: 1.5rem;
+// 	}
+
+// }
 
 // Flexbox
 .flex {
-  display: flex;
+	display: flex;
 
-  &-fd-c {
-    flex-direction: column;
-  }
+	&-fd-c {
+		flex-direction: column;
+	}
 
-  &-jc-sb {
-    justify-content: space-between;
-  }
+	&-jc-sb {
+		justify-content: space-between;
+	}
 
-  &-jc-c {
-    justify-content: center;
-  }
+	&-jc-c {
+		justify-content: center;
+	}
 
-  &-ai-c {
-    align-items: center;
-  }
+	&-ai-c {
+		align-items: center;
+	}
 }
 
 // Grid
 .grid {
-  display: grid;
+	display: grid;
 
-  &-two-areas {
-    grid-template-columns: 140px auto 106px;
-    grid-template-areas: "a b c";
-  }
+	&-two-areas {
+		grid-template-columns: 1fr 3fr 1fr;
+		grid-template-areas: "a b c";
+	}
 }
 
 // Buttons
+
+
+
+
 button,
 .button {
-  padding: 0.5rem 0.75rem;
-  background-color: $darkBlue;
-  border: 0;
-  border-radius: 50px;
-  color: $white;
-  font-weight: 400;
+
+	padding: 0.5rem 1.5rem;
+	border: 1px;
+	border-radius: 0.5rem;
+	color: $white;
+	font-weight: 400;
+	text-align: center;
+	cursor: pointer;
+	transition: opacity 300ms ease-in-out;
+
+	&:hover {
+		opacity: 0.90;
+	}
+
+	&__primary {
+		background-color: $darkBlue;
+	}
+
+	&__secondary {
+		background-color: #cdcdcd;
+	}
+
 }
 
 // Visibility
 .hide-for-mobile {
-  @include breakpoint-down(medium) {
-    display: none;
-  }
+	@include breakpoint-down(medium) {
+		display: none;
+	}
 }
 
 .hide-for-desktop {
-  @include breakpoint-up(large) {
-    display: none;
-  }
+	@include breakpoint-up(large) {
+		display: none;
+	}
 }
 
 .hide {
-  display: none;
+	display: none;
 }

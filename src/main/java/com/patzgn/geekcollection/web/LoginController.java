@@ -10,4 +10,5 @@ public class LoginController {
     String loginForm() {
         return "login-form";
     }
+
 }

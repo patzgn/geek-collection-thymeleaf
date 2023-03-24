@@ -6,81 +6,52 @@
       layout:decorate="~{layout}">
 <body>
 
-<section class="notification" layout:fragment="notification">
-    <p th:if="${param.logout}" class="notification__text">
-        You have successfully logged out
-    </p>
-    <p th:if="${param.success}" class="notification__text">
-        You have successfully registered
-    </p>
+<section th:if="${message}" class="notification" layout:fragment="notification">
+    <p th:text="${message}" class="m-3"></p>
 </section>
 
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                Track your geek collection
-            </h1>
+    <div class="container px-4 py-5 ">
+        <h1 class="mb-5 display-6 fw-bold text-center">
+            Track your geek collection
+        </h1>
 
-            <div>
-                <ul>
-                    <li>Catalog your games and books collection</li>
-                    <li>Create wishlists</li>
-                    <li>Take part in reading challenge</li>
-                    <li>Check most popular games and books among users</li>
-                </ul>
+        <div class="col-lg-6 mx-auto">
+            <ul class="mb-5">
+                <li>Catalog your games and books collection</li>
+                <li>Create wishlists</li>
+                <li>Take part in reading challenge</li>
+                <li>Check most popular games and books among users</li>
+            </ul>
+
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()"
+                   class="btn btn-primary btn-lg px-4">Sign in</a>
+                <a href="#" th:href="@{/users/{name}(name=${#authentication.name})}" sec:authorize="isAuthenticated()"
+                   class="btn btn-primary btn-lg px-4">My Profile</a>
+                <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()"
+                   class="btn btn-outline-secondary btn-lg px-4">Log out</a>
             </div>
-
-            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()" class="button header__cta">Sign in</a>
-            <a href="#" th:href="@{/user/{name}(name=${#authentication.name})}" sec:authorize="isAuthenticated()" class="button header__cta">My Profile</a>
         </div>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="product__content container container--pall">
-        Latest added games
-        <div class="product__grid" th:remove="all-but-first">
-            <a class="product__item" th:each="game: ${games}"
-               href="#"
-               th:href="@{|/game/${game.id}|}">
-                <div class="product__image"
-                     style="background-image: url('../static/img/games/the_legend_of_zelda_breath_of_the_wild.jpg')"
-                     th:style="${game.poster ne null} ?
-                        @{|background-image: url(/img/games/${game.poster})|} :
-                        @{|background-image: url(/img/poster-placeholder.png)|}"
-                ></div>
-                <div class="product__title" th:text="${game.title}">
-                    The Legend of Zelda Breath of the Wild
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/games/kirby_and_the_forgotten_land.jpg')"
-                     th:style="'background-image: url(/img/games/Kirby_and_The_Forgotten_Land.jpg)'"
-                ></div>
-                <div class="product__title">
-                    Kirby and The Forgotten Land
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/games/super_mario_odyssey.jpg')"
-                     th:style="'background-image: url(/img/games/Super_Mario_Odyssey.jpg)'"
-                ></div>
-                <div class="product__title">
-                    Super Mario Odyssey
-                </div>
-            </a>
-            <a href="#" class="product__item">
-                <div class="product__image"
-                     style="background-image: url('../static/img/games/mario_kart_8_deluxe.jpg')"
-                     th:style="'background-image: url(/img/games/Mario_Kart_8_Deluxe.jpg)'"
-                ></div>
-                <div class="product__title">
-                    Mario Kart 8 Deluxe
-                </div>
-            </a>
+    <div class="container py-5 px-5">
+        <h2 class="display-6 text-center mb-4">Latest added games</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div class="col" th:each="game: ${games}">
+                <a href="#" th:href="@{|/games/${game.id}|}"
+                   class="card shadow-sm h-100">
+                    <img src="../static/img/games/the_legend_of_zelda_breath_of_the_wild.jpg"
+                         th:src="${game.poster ne null} ?
+                         @{|/img/games/${game.poster}|} : @{|/img/poster-placeholder.png|}"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${game.title}">The Legend of Zelda Breath of the Wild</h5>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </section>

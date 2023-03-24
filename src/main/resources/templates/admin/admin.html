@@ -5,34 +5,40 @@
       layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
 <body>
 
-<section class="notification" layout:fragment="notification">
-    <p th:if="${notification}" th:text="${notification}" class="notification__text">
-        Notifications
-    </p>
+<section th:if="${message}" class="notification" layout:fragment="notification">
+    <p th:text="${message}" class="m-3"></p>
 </section>
 
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                Admin panel
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            Admin panel
+        </h1>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-jc-c admin">
-        <div class="admin__links">
-            <a href="#"
-               th:href="@{/admin/add-game}">Add game</a>
-            <a href="#"
-               th:href="@{/admin}">Add book</a>
-            <a href="#"
-               th:href="@{/admin/add-genre}">Add genre</a>
-            <a href="#"
-               th:href="@{/admin/add-platform}">Add platform</a>
-        </div>
+    <div class="container py-5 px-5">
+
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin}"
+                   class="nav-link active">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-game}"
+                   class="nav-link">Add game</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-genre}"
+                   class="nav-link">Add genre</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/admin/add-platform}"
+                   class="nav-link">Add platform</a>
+            </li>
+        </ul>
+
     </div>
 </section>
 

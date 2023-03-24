@@ -7,44 +7,47 @@ import com.patzgn.geekcollection.domain.genre.GenreRepository;
 import com.patzgn.geekcollection.domain.platform.Platform;
 import com.patzgn.geekcollection.domain.platform.PlatformRepository;
 import com.patzgn.geekcollection.storage.FileStorageService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static org.springframework.data.domain.Sort.*;
+
 @Service
+@AllArgsConstructor
 public class GameService {
     private final GameRepository gameRepository;
     private final PlatformRepository platformRepository;
     private final GenreRepository genreRepository;
     private final FileStorageService fileStorageService;
 
-    public GameService(GameRepository gameRepository, PlatformRepository platformRepository, GenreRepository genreRepository, FileStorageService fileStorageService) {
-        this.gameRepository = gameRepository;
-        this.platformRepository = platformRepository;
-        this.genreRepository = genreRepository;
-        this.fileStorageService = fileStorageService;
-    }
 
     public Optional<GameDto> findGameById(long id) {
         return gameRepository.findById(id).map(GameDtoMapper::map);
     }
 
-    public List<GameDto> findAllGames() {
-        return StreamSupport.stream(gameRepository.findAll().spliterator(), false)
-                .map(GameDtoMapper::map)
-                .toList();
+    public Page<GameDto> findAllGames(Pageable pageable) {
+        return gameRepository.findAll(pageable)
+                .map(GameDtoMapper::map);
     }
 
-    public Page<GameDto> findAllGamesPage(int page, int size) {
-        Sort.Order order = new Sort.Order(Sort.Direction.ASC, "title");
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(order));
-        return gameRepository.findAll(pageable)
+    public Page<GameDto> findByTitleContaining(String keyword, Pageable pageable) {
+        return gameRepository.findByTitleContainingIgnoreCase(keyword, pageable)
+                .map(GameDtoMapper::map);
+    }
+
+    public Page<GameDto> findAllByPlatform(String platform, Pageable pageable) {
+        return gameRepository.findByPlatforms_NameIgnoreCase(platform.replaceAll("-", " "), pageable)
+                .map(GameDtoMapper::map);
+    }
+
+    public Page<GameDto> findByPlatformAndTitleContaining(String platform, String keyword, Pageable pageable) {
+        return gameRepository.findByPlatforms_NameIgnoreCaseAndTitleContainingIgnoreCase(platform, keyword, pageable)
                 .map(GameDtoMapper::map);
     }
 
@@ -75,6 +78,9 @@ public class GameService {
                 .collect(Collectors.toSet());
         game.setGenres(genres);
         gameRepository.save(game);
+    }
+
+    public void deleteGame(long id) {
     }
 
 }

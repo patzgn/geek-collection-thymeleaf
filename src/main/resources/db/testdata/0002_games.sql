@@ -16,7 +16,11 @@ values
     -- 7
     ('Bayonetta', '2010-01-08', 'Blurring the borders of good and evil, this cinematic and stylized adventure stars Bayonetta, a heroine bent on sending supernatural forces to the depths of hell. Armed with her four enchanted guns known as Scarborough Fair, she battles both monstrous behemoths and angelic enemies. By combining special magic attacks, summoning primal forces and unleashing devastating weaponry, she impressively punishes anyone who gets in her way. From its fluid and intuitive combat system to its gripping story line, Bayonetta is one action thriller that won''t disappoint.', 'bayonetta.jpg'),
     -- 8
-    ('Bayonetta 2', '2014-10-24', 'In this climactic sequel to the critically acclaimed BAYONETTA action game, players will be on the edge of their seats from start to finish. Brimming with epic, gorgeous cut scenes and battles that are more exhilarating than ever, this game never lets up on the action. Fight on top of a jet as it soars through a downtown city. Duke it out against a giant angel, who bears a whip for an arm, on top of a speeding train. And take to the skies in a fight against a demonic monster while ascending to the top of a skyscraper.', 'bayonetta_2.jpg');
+    ('Bayonetta 2', '2014-10-24', 'In this climactic sequel to the critically acclaimed BAYONETTA action game, players will be on the edge of their seats from start to finish. Brimming with epic, gorgeous cut scenes and battles that are more exhilarating than ever, this game never lets up on the action. Fight on top of a jet as it soars through a downtown city. Duke it out against a giant angel, who bears a whip for an arm, on top of a speeding train. And take to the skies in a fight against a demonic monster while ascending to the top of a skyscraper.', 'bayonetta_2.jpg'),
+    -- 9
+    ('Luigi''s Mansion 3', '2019-10-31', 'Luigi’s invited to the towering Last Resort hotel, but when Mario and friends go missing, our green-clad hero will have to conquer his fears to save them! Slam, blow away, and vacuum up ghosts with the all-new Poltergust G-00, and join forces with Gooigi to overcome the puzzling contraptions and mischievous boss on each themed floor. And that’s just the Last Resort. Enter the ScareScraper for 8-player local wireless** or online*** co-op gameplay. See if you can defeat all the ghosts, rescue all the toads, or clear other objectives before time runs out…in the ScareScraper! And for more mini-game madness, compete on teams at the ScreamPark! Whether you play with friends or wander the hotel alone, you’ll be sucked in by the atmospheric music and ghoulish décor of every cobwebby corner you', 'luigis_mansion_3.jpg'),
+    -- 10
+    ('New Pokemon Snap', '2021-04-30', 'Seek out and take in-game photographs of Pokémon in their native environments in New Pokémon Snap! You''ll even discover behaviors and expressions you''ve never seen before when you encounter and research lively wild Pokémon. You might see them patrolling their territory, playing, or lurking in out-of-the-way spots. Travel to the islands that make up the Lental region. In this region, some of the Pokémon and vegetation will appear to have a special glow. Research these Pokémon alongside Professor Mirror as you explore dense jungles, vast deserts, and more! Your observations of Pokémon thriving in the wild may help unravel the truth behind the Illumina phenomenon. The Pokémon pictures you take will be used to build your very own Pokémon Photodex!', 'new_pokemon_snap.jpg');
 
 insert into
     game_genre(game_id, genre_id)
@@ -28,7 +32,9 @@ values
     (5, 5),
     (6, 1),
     (7, 1), (7, 6),
-    (8, 1), (8, 6);
+    (8, 1), (8, 6),
+    (9, 1), (9, 4),
+    (10, 5);
 
 insert into
     game_platform
@@ -40,4 +46,6 @@ values
     (5, 1),
     (6, 1),
     (7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7),
-    (8, 1), (8, 5);
+    (8, 1), (8, 5),
+    (9, 1),
+    (10, 1);

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section class="hero" layout:fragment="hero">
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            Profile
+        </h1>
+    </div>
+</section>
+
+<section class="content" layout:fragment="content">
+    <div class="container py-5 px-5">
+
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a href="#" th:href="@{/users/{name}(name=${#authentication.name})}"
+                   class="nav-link">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/users/{name}/games(name=${#authentication.name})}"
+                   class="nav-link active">Games</a>
+            </li>
+        </ul>
+
+        <div class="row justify-content-end mb-3 mt-4">
+            <div class="col-4">
+                <form th:action="@{/users/{name}/games(name=${#authentication.name})}">
+                    <div class="input-group">
+                        <input th:value="${keyword}" type="search" id="keyword" name="keyword"
+                               placeholder="Enter keyword"
+                               required class="form-control">
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                        <a href="#" th:href="@{/users/{name}/games(name=${#authentication.name})}" class="btn btn-outline-secondary">Clear</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div th:if="${games.size() > 0}" class="table-responsive">
+            <table class="table table-hover md-4">
+                <thead class="fs-4">
+                <tr>
+                    <th scope="col">TITLE</th>
+                    <th scope="col">PLATFORM</th>
+                    <th style="width: 20%" class="text-center">STATUS</th>
+                    <th style="width: 20%" class="text-center">ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="game: ${games}">
+                    <td>
+                        <a href="#" th:href="@{|/games/${game.gameId}|}" th:text="${game.gameTitle}" style="display: block">
+                            Title
+                        </a>
+                    </td>
+                    <td th:text="${game.platform}" class="text-center">
+                        Platform
+                    </td>
+                    <td th:text="${game.status}" class="text-center">
+                        Status
+                    </td>
+                    <td class="text-center">
+
+                        <a href="#"
+                           data-bs-toggle="modal" data-bs-target="#editGameModal"
+                           th:attr="data-title=${game.gameTitle}, data-gameid=${game.id}, data-user=${#authentication.name}"
+                           title="Edit">
+                            <img src="../../static/img/icons/edit.png" th:src="@{/img/icons/edit.png}"
+                                 style="width: 32px">
+                        </a>
+
+                        <div class="modal fade" id="editGameModal" tabindex="-1" aria-labelledby="editGameModalLabel"
+                             role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="editGameModalLabel">Edit game</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <form th:method="put" class="modal-form">
+                                        <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" hidden>
+                                        <div class="modal-body">
+                                            <p class="modal-game-title">Game title</p>
+                                            <select id="status" name="status" required class="form-select">
+                                                <option th:each="status: ${statuses}" th:value="${status}"
+                                                        th:text="${status}"
+                                                        th:selected="${status.name() == game.status}">
+                                                    Option
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a href="#"
+                           data-bs-toggle="modal"
+                           data-bs-target="#deleteModal"
+                           title="Delete">
+                            <img src="../../static/img/icons/trash.png" th:src="@{/img/icons/trash.png}"
+                                 style="width: 32px">
+                        </a>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div th:utext="|Delete &lt;strong&gt;${gameTitle}&lt;/strong&gt; from &lt;strong&gt;${gameListName}&lt;/strong&gt;?|"
+                                         class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form th:action="@{/users/{name}/games/{id}(name=${#authentication.name}, id=${game.id})}"
+                                              th:method="delete">
+                                            <input name="listId" th:value="${param.id ne null ? param.id : 1}"
+                                                   hidden="hidden">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" th:method="delete" class="btn btn-primary">Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation">
+                <ul th:if="${totalPages > 1}" class="pagination justify-content-center">
+                    <li th:classappend="${currentPage == 1} ? 'disabled'" class="page-item">
+                        <a th:href="@{|/users/{name}/games?page=${currentPage - 1}|(name=${#authentication.name})}" class="page-link">Previous</a>
+                    </li>
+
+                    <li th:if="${currentPage - 2 > 1}" class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+
+                    <li th:each="i: ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 1, currentPage + 2 < totalPages ? currentPage + 2 : totalPages)}"
+                        th:classappend="${currentPage == i} ? 'active'" class="page-item">
+                        <a th:text="${i}" th:href="@{|/users/{name}/games?page=${i}|(name=${#authentication.name})}"
+                           class="page-link" href="#">1</a>
+                    </li>
+
+                    <li th:if="${currentPage + 2 < totalPages}" class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+
+                    <li th:classappend="${currentPage == totalPages} ? 'disabled'" class="page-item">
+                        <a th:href="@{|/users/{name}/games?page=${currentPage + 1}|(name=${#authentication.name})}" class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div th:unless="${games.size() > 0}" class="row justify-content-center">
+            <div class="alert alert-secondary col-6">
+                No games found!
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('#editGameModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var user = button.data('user')
+            var title = button.data('title')
+            var gameid = button.data('gameid')
+
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-game-title').text(title)
+            modal.find('.modal-form').attr('action', '/users/' + user + '/games/' + gameid)
+        })
+    </script>
+
+</section>
+</body>
+</html>

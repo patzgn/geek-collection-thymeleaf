@@ -29,7 +29,7 @@ public class PlatformManagementController {
     public String addPlatform(PlatformDto platform, RedirectAttributes redirectAttributes) {
         platformService.addPlatform(platform);
         redirectAttributes.addFlashAttribute(
-                AdminController.NOTIFICATION_ATTRIBUTE,
+                "message",
                 "Platform %s saved".formatted(platform.getName())
         );
         return "redirect:/admin";

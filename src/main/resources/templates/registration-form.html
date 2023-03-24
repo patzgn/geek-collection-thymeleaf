@@ -6,25 +6,33 @@
 <body>
 
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                Create an account
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            Create an account
+        </h1>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-ai-c flex-jc-c flex-fd-c">
-        <div class="border_box sign">
-            <form action="#" th:action="@{/register}" method="post" th:object="${user}" class="sign__form">
-                <input th:field="*{email}" type="email" placeholder="Email" class="sign__form__item">
-                <input th:field="*{name}" placeholder="Username" class="sign__form__item">
-                <input th:field="*{password}" type="password" placeholder="Password" class="sign__form__item">
-                <button type="submit" class="button">Create Account</button>
-            </form>
-        </div>
+    <div class="form-signin w-100 my-4 mx-auto border">
+        <form th:action="@{/register}" method="post" th:object="${user}">
+            <div class="form-floating mb-3">
+                <input th:field="*{email}" type="email" name="email" id="email" placeholder="Email"
+                       class="form-control">
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="*{name}" name="username" id="username" placeholder="Username"
+                       class="form-control">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input th:field="*{password}" type="password" name="password" id="password" placeholder="Password"
+                       class="form-control">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit" class="w-100 btn btn-primary">Create Account</button>
+        </form>
     </div>
 </section>
 

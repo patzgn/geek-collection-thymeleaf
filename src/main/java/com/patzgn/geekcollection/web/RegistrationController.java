@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RegistrationController {
@@ -23,8 +24,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String register(UserRegistrationDto userRegistration) {
+    public String register(UserRegistrationDto userRegistration,
+                           RedirectAttributes redirectAttributes) {
         userService.registerUserWithDefaultRole(userRegistration);
-        return "redirect:/?success";
+        redirectAttributes.addFlashAttribute("message", "You have successfully registered");
+        return "redirect:/";
     }
+
 }

@@ -34,7 +34,7 @@ public class GenreManagementController {
     public String addGenre(GenreDto genre, RedirectAttributes redirectAttributes) {
         genreService.addGenre(genre);
         redirectAttributes.addFlashAttribute(
-                AdminController.NOTIFICATION_ATTRIBUTE,
+                "message",
                 "Genre %s saved".formatted(genre.getName())
         );
         return "redirect:/admin";

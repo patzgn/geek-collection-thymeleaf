@@ -1,0 +1,70 @@
+.table2 {
+
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    thead,
+    tbody {
+        border-bottom: 2px solid $darkGray;
+    }
+
+    th,
+    td {
+        padding: 0.5rem 0.5rem;
+        position: relative;
+    }
+
+    th {
+        font-size: 1.5rem;
+        letter-spacing: 0.025rem;
+        color: $darkBlue;
+
+        &:hover,
+        &:focus {
+            color: $lightGray;
+        }
+
+    }
+
+    tbody>tr {
+        transition: background-color 300ms ease-in-out;
+
+        &:hover,
+        &:focus {
+            background-color: $veryLightGray;
+        }
+    }
+
+    td {
+
+        &[data-label="No."] {
+            text-align: center;
+        }
+    }
+
+    &__icon {
+        width: 32px;
+        vertical-align: middle;
+    }
+
+    &__row-click {
+        display: block;
+
+        &:visited,
+        &:hover {
+            color: inherit;
+        }
+
+    }
+
+    &__actions,
+    &__status {
+        width: 15%;
+        text-align: center;
+    }
+
+
+
+}

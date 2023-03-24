@@ -6,27 +6,27 @@
 <body>
 
 <section class="hero" layout:fragment="hero">
-    <div class="container">
-        <div class="container--pall hero__text">
-            <h1>
-                My profile
-            </h1>
-        </div>
+    <div class="container px-4 py-5 ">
+        <h1 class="display-6 fw-bold text-center">
+            Profile
+        </h1>
     </div>
 </section>
 
 <section class="content" layout:fragment="content">
-    <div class="container container--pall flex flex-jc-c admin">
-        <div class="admin__links">
-            <a href="#"
-               th:href="@{/user/{name}(name=${#authentication.name})}">Profile</a>
-            <a href="#"
-               th:href="@{/user/{name}/games(name=${#authentication.name})}">Games</a>
-            <a href="#"
-               th:href="@{/user/{name}/books(name=${#authentication.name})}">Books</a>
-            <a href="#"
-               th:href="@{/user/{name}/options(name=${#authentication.name})}">Options</a>
-        </div>
+    <div class="container py-5 px-5">
+
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a href="#" th:href="@{/users/{name}(name=${#authentication.name})}"
+                   class="nav-link active">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" th:href="@{/users/{name}/games(name=${#authentication.name})}"
+                   class="nav-link">Games</a>
+            </li>
+        </ul>
+
     </div>
 </section>
 

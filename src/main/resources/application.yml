@@ -1,4 +1,14 @@
 spring:
+  profiles:
+    active: dev
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
   jpa:
     hibernate:
       ddl-auto: validate
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
